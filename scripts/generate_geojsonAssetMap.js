@@ -5,7 +5,7 @@
  * manifest.json を読み、geojson を静的 import する registry js を生成する。
  *
  * usage:
- *   node ./tools/generate-geojson-registry.js
+ *   node ./scripts/generate_geojsonAssetMap.js
  */
 
 import fs from "fs";
