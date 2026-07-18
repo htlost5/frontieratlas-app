@@ -22,8 +22,8 @@
     },
     "prep_room": {
       "visible": true,
-      "label": { "icon": false, "text": false },
-      "poi": true
+      "label": { "icon": true, "text": true },
+      "poi": false
     },
     "staff_room": {
       "visible": true,
@@ -126,7 +126,7 @@
       "poi": true
     },
     "vending": {
-      "visible": false,
+      "visible": true,
       "label": { "icon": false, "text": false },
       "poi": true
     },
@@ -141,7 +141,7 @@
       "poi": true
     },
     "locker_area": {
-      "visible": false,
+      "visible": true,
       "label": { "icon": false, "text": false },
       "poi": true
     },
@@ -186,7 +186,7 @@
       "poi": false
     },
     "atrium": {
-      "visible": true,
+      "visible": false,
       "label": { "icon": false, "text": false },
       "poi": false
     },

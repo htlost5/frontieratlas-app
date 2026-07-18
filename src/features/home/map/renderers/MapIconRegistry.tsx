@@ -36,6 +36,10 @@ import iconWorkshopLight from "@/assets/images/icons/MapView/map/categoryIcons/w
 import iconWorkshopDark from "@/assets/images/icons/MapView/map/categoryIcons/workshop-dark.png";
 import iconWasteLight from "@/assets/images/icons/MapView/map/categoryIcons/waste-light.png";
 import iconWasteDark from "@/assets/images/icons/MapView/map/categoryIcons/waste-dark.png";
+import iconStaffLight from "@/assets/images/icons/MapView/map/categoryIcons/staff-light.png";
+import iconStaffDark from "@/assets/images/icons/MapView/map/categoryIcons/staff-dark.png";
+import iconPrepLight from "@/assets/images/icons/MapView/map/categoryIcons/prep-light.png";
+import iconPrepDark from "@/assets/images/icons/MapView/map/categoryIcons/prep-dark.png";
 
 // Type 2: 特殊シンボル — 12個
 import iconSpecialToiletMale from "@/assets/images/icons/MapView/MapLogo/special/special-toilet-male.png";
@@ -85,6 +89,10 @@ const ICON_IMAGES: Record<string, number> = {
   "workshop-dark": iconWorkshopDark,
   "waste-light": iconWasteLight,
   "waste-dark": iconWasteDark,
+  "staff-light": iconStaffLight,
+  "staff-dark": iconStaffDark,
+  "prep-light": iconPrepLight,
+  "prep-dark": iconPrepDark,
   // 特殊シンボル
   "special-toilet-male": iconSpecialToiletMale,
   "special-toilet-female": iconSpecialToiletFemale,

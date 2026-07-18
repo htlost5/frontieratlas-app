@@ -14,8 +14,7 @@ export type PoiCategory =
   | "locker_area"
   | "storage"
   | "fire_door"
-  | "changing_room"
-  | "prep_room";
+  | "changing_room";
 
 export interface PoiIconSpec {
   category: PoiCategory;
@@ -23,7 +22,7 @@ export interface PoiIconSpec {
   sortKey: number;
 }
 
-/** category.json キー → PoiIconSpec マッピング（12種） */
+/** category.json キー → PoiIconSpec マッピング（11種） */
 export const POI_CATEGORY_MAP: Record<string, PoiIconSpec> = {
   male_restroom: {
     category: "male_restroom",
@@ -50,10 +49,14 @@ export const POI_CATEGORY_MAP: Record<string, PoiIconSpec> = {
   vending: { category: "vending", iconKey: "special-vending", sortKey: 3 },
   locker_area: {
     category: "locker_area",
-    iconKey: "special-locker",
+    iconKey: "special-storage",
     sortKey: 3,
   },
-  storage: { category: "storage", iconKey: "special-storage", sortKey: 3 },
+  storage: {
+    category: "storage",
+    iconKey: "special-storage",
+    sortKey: 3,
+  },
   fire_door: {
     category: "fire_door",
     iconKey: "special-fire-door",
@@ -64,7 +67,6 @@ export const POI_CATEGORY_MAP: Record<string, PoiIconSpec> = {
     iconKey: "special-changing-room",
     sortKey: 3,
   },
-  prep_room: { category: "prep_room", iconKey: "special-storage", sortKey: 3 },
 };
 
 /** 全 POI キーの配列 */

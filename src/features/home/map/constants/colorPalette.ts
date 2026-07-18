@@ -2,6 +2,8 @@
 export type RoomCategory =
   | "learning"
   | "laboratory"
+  | "prep"
+  | "structure"
   | "meeting"
   | "library"
   | "it"
@@ -16,13 +18,22 @@ export type RoomCategory =
   | "sewing"
   | "art"
   | "workshop"
+  | "restroom"
+  | "vending"
+  | "changing"
+  | "elevator"
   | "waste"
+  | "staff"
   | "courtyard";
 
 /** 11の色共有グループ */
 export type ColorGroup =
   | "blue"
   | "purple"
+  | "cyan"
+  | "salmon"
+  | "indigo"
+  | "lime"
   | "amber"
   | "teal"
   | "green"
@@ -31,6 +42,8 @@ export type ColorGroup =
   | "coral"
   | "orange"
   | "gray"
+  | "gold"
+  | "bronze"
   | "olive";
 
 /** RoomCategory → ColorGroup マッピング */
@@ -38,7 +51,10 @@ export const ROOM_COLOR_GROUP: Record<RoomCategory, ColorGroup> = {
   learning: "blue",
   library: "blue",
   laboratory: "purple",
-  meeting: "amber",
+  prep: "gray",
+  structure: "gray",
+  meeting: "gold",
+  staff: "bronze",
   it: "teal",
   listening: "green",
   nursery: "pink",
@@ -51,6 +67,10 @@ export const ROOM_COLOR_GROUP: Record<RoomCategory, ColorGroup> = {
   sewing: "coral",
   art: "brown",
   workshop: "orange",
+  restroom: "cyan",
+  vending: "salmon",
+  changing: "indigo",
+  elevator: "lime",
   waste: "gray",
   courtyard: "olive",
 };
@@ -113,6 +133,30 @@ export const LIGHT_THEME: ColorTheme = {
       circleFill: "#AB47BC",
       opacity: 1.0,
     },
+    cyan: {
+      fill: "#B2EBF2",
+      line: "#80DEEA",
+      circleFill: "#00BCD4",
+      opacity: 1.0,
+    },
+    salmon: {
+      fill: "#FFCDD2",
+      line: "#EF9A9A",
+      circleFill: "#E53935",
+      opacity: 1.0,
+    },
+    indigo: {
+      fill: "#C5CAE9",
+      line: "#9FA8DA",
+      circleFill: "#5C6BC0",
+      opacity: 1.0,
+    },
+    lime: {
+      fill: "#F0F4C3",
+      line: "#E6EE9C",
+      circleFill: "#C0CA33",
+      opacity: 1.0,
+    },
     amber: {
       fill: "#FFF9C4",
       line: "#FFF176",
@@ -161,6 +205,18 @@ export const LIGHT_THEME: ColorTheme = {
       circleFill: "#757575",
       opacity: 1.0,
     },
+    gold: {
+      fill: "#D4C830",
+      line: "#B8A820",
+      circleFill: "#8E7600",
+      opacity: 1.0,
+    },
+    bronze: {
+      fill: "#E6C830",
+      line: "#C9A820",
+      circleFill: "#9E8600",
+      opacity: 1.0,
+    },
     olive: {
       fill: "#D5D9C5",
       line: "#BCC0A8",
@@ -201,6 +257,30 @@ export const DARK_THEME: ColorTheme = {
       fill: "#2D1B4E",
       line: "#4A2C7A",
       circleFill: "#4A2C7A",
+      opacity: 1.0,
+    },
+    cyan: {
+      fill: "#004D40",
+      line: "#00695C",
+      circleFill: "#00897B",
+      opacity: 1.0,
+    },
+    salmon: {
+      fill: "#4A1A1A",
+      line: "#6B2A2A",
+      circleFill: "#8B3A3A",
+      opacity: 1.0,
+    },
+    indigo: {
+      fill: "#1A1A4A",
+      line: "#2A2A6B",
+      circleFill: "#3A3A8B",
+      opacity: 1.0,
+    },
+    lime: {
+      fill: "#2A3A1A",
+      line: "#3A4A2A",
+      circleFill: "#4A5A3A",
       opacity: 1.0,
     },
     amber: {
@@ -249,6 +329,18 @@ export const DARK_THEME: ColorTheme = {
       fill: "#2C2C2C",
       line: "#424242",
       circleFill: "#424242",
+      opacity: 1.0,
+    },
+    gold: {
+      fill: "#352A18",
+      line: "#5D4818",
+      circleFill: "#5D4818",
+      opacity: 1.0,
+    },
+    bronze: {
+      fill: "#3D3520",
+      line: "#6D5C20",
+      circleFill: "#6D5C20",
       opacity: 1.0,
     },
     olive: {

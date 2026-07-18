@@ -6,7 +6,7 @@ import { isFeatureVisible } from "../../../../config/categoryDisplayConfig";
 
 export type RoomCategoryGroup = RoomCategory;
 
-/** category.json キー → RoomCategory マッピング（24キー） */
+/** category.json キー → RoomCategory マッピング（33キー） */
 export const ROOM_CATEGORY_MAP: Record<string, RoomCategoryGroup> = {
   // blue
   classroom: "learning",
@@ -14,8 +14,24 @@ export const ROOM_CATEGORY_MAP: Record<string, RoomCategoryGroup> = {
   library: "library",
   // purple
   laboratory: "laboratory",
+  prep_room: "prep",
+  // sanitary（cyan）
+  male_restroom: "restroom",
+  female_restroom: "restroom",
+  accessible_restroom: "restroom",
+  changing_room: "changing",
+  // circulation（設備）
+  elevator: "elevator",
+  vending: "vending",
+  // gray（壁・構造）
+  structure: "structure",
+  fire_door: "waste",
+  storage: "structure",
+  atrium: "waste",
+  locker_area: "structure",
+  emergency_exit: "structure",
   // amber
-  staff_room: "meeting",
+  staff_room: "staff",
   meeting_room: "meeting",
   studio_room: "studio",
   broadcasting_room: "broadcasting",
@@ -42,10 +58,13 @@ export const ROOM_CATEGORY_MAP: Record<string, RoomCategoryGroup> = {
   courtyard: "courtyard",
 };
 
-/** 全18 RoomCategory */
+/** 全25 RoomCategory */
 export const CATEGORIES: RoomCategory[] = [
   "learning",
+  "structure",
   "laboratory",
+  "prep",
+  "staff",
   "meeting",
   "library",
   "it",
@@ -60,6 +79,10 @@ export const CATEGORIES: RoomCategory[] = [
   "sewing",
   "art",
   "workshop",
+  "restroom",
+  "vending",
+  "changing",
+  "elevator",
   "waste",
   "courtyard",
 ];
