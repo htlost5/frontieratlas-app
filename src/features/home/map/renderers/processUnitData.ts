@@ -15,11 +15,7 @@ export function processUnitData(
     .filter(
       (f): f is typeof f & { properties: NonNullable<typeof f.properties> } => {
         const dp = f.properties?.display_point;
-        return (
-          dp != null &&
-          Array.isArray(dp.coordinates) &&
-          dp.coordinates.length === 2
-        );
+        return dp != null && Array.isArray(dp) && dp.length === 2;
       },
     )
     .map((f) => {
@@ -35,7 +31,10 @@ export function processUnitData(
       }
       return {
         ...f,
-        geometry: f.properties.display_point,
+        geometry: {
+          type: "Point" as const,
+          coordinates: f.properties.display_point as [number, number],
+        },
         properties: normalizedProperties,
       };
     });
