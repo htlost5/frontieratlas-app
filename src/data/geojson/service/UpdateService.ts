@@ -38,21 +38,9 @@ export class UpdateService {
    */
   async fetchLatestVersionInfo(): Promise<VersionInfo | null> {
     try {
-      const latestUrl = LATEST_URL;
-      const config = await fetchJsonWithRetry<{
-        version: string;
-        srcFolder: string;
-      }>(latestUrl);
+      const versionInfo = await fetchJsonWithRetry<VersionInfo>(LATEST_URL);
 
-      if (!config || !config.version) {
-        throw new VersionFetchError();
-      }
-
-      // version.json から詳細情報を取得
-      const versionInfoUrl = `${RELEASES_URL}/${config.version}/data/version.json`;
-      const versionInfo = await fetchJsonWithRetry<VersionInfo>(versionInfoUrl);
-
-      if (!versionInfo) {
+      if (!versionInfo || !versionInfo.version) {
         throw new VersionFetchError();
       }
 
