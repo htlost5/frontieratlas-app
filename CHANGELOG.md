@@ -1,7 +1,19 @@
 # Changelog
 
-All notable changes to FrontierAtlas will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## 0.18.0 (2026-07-18)
+
+
+### Features
+
+* シンボル表示4分類再構築 — 17カテゴリアイコン+12POI特殊シンボルに拡張 ([39bd6b7](https://github.com/htlost5/frontieratlas-app/commit/39bd6b768ecdbe88d4656015ec12b70e10f93c65))
+
+
+### Bug Fixes
+
+* R2構造変更に伴う最新バージョン取得ロジックの修正 ([da399e3](https://github.com/htlost5/frontieratlas-app/commit/da399e366d4ca86db77778127a0a99a8020b4cd8))
+* usageコメント修正・実装ログ追加 ([fc78864](https://github.com/htlost5/frontieratlas-app/commit/fc78864fc420307335898ba4a12cc113a7d6051a))
 
 ### [0.17.1](https://github.com/htlost/frontieratlas/compare/v0.17.0...v0.17.1) (2026-07-15)
 

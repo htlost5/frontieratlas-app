@@ -1,7 +1,7 @@
 {
   "name": "frontieratlas-app",
   "main": "expo-router/entry",
-  "version": "0.17.1",
+  "version": "0.18.0",
   "type": "module",
   "scripts": {
     "start": "expo starting",
