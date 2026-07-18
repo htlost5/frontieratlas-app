@@ -112,6 +112,17 @@ export async function loadAllMapData(): Promise<void> {
         floors.set(floor, { surface, rooms, underlaySurface: null });
       }
 
+      // 2F/3F の underlaySurface を 1F surface で設定
+      const floor1 = floors.get(1);
+      if (floor1) {
+        for (const f of [2, 3]) {
+          const existing = floors.get(f);
+          if (existing) {
+            floors.set(f, { ...existing, underlaySurface: floor1.surface });
+          }
+        }
+      }
+
       // 4F/5F の underlaySurface を 3F surface で設定
       const floor3 = floors.get(3);
       if (floor3) {
