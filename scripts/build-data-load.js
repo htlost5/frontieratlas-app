@@ -7,9 +7,7 @@ import { fileURLToPath } from "url";
 import { generateGeojsonAssetMap } from "./generate_geojsonAssetMap.js";
 
 const versionConfig = JSON.parse(
-  fs.readFileSync(
-    new URL("../config/geo-data-version.json", import.meta.url),
-  ),
+  fs.readFileSync(new URL("../config/geo-data-version.json", import.meta.url)),
 );
 
 const __filename = fileURLToPath(import.meta.url);
