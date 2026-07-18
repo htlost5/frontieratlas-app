@@ -1,3 +1,20 @@
+## [0.18.1] - 2026-07-18
+
+### Added
+- オフラインファースト対応（マニフェストベースのキャッシュ戦略）
+- 17カテゴリアイコン + 12 POI特殊シンボルへのシンボル表示拡張
+
+### Changed
+- マップレイヤー構造を再編しパフォーマンスを改善
+- GeoJSON ID 参照を修正しデータ整合性を向上
+- 部屋表示を再設計
+
+### Fixed
+- プロセスユニットデータフィルターの修正
+- SQLite 同時実行時の安定性修正
+- 非常口ポリゴンの表示修正
+- カテゴリ色の修正
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
