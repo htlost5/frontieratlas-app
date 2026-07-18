@@ -31,7 +31,7 @@ export const BuildingOutlineLayer = React.memo(function BuildingOutlineLayer({
       }}
       lineStyle={{
         lineColor: colorTheme.buildings.line,
-        lineWidth: 1.5,
+        lineWidth: 2.5,
       }}
     />
   );

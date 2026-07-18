@@ -26,7 +26,7 @@ export function SurfaceLayer({
       visible={visible}
       belowLayerID={belowLayerID}
       fillStyle={{ fillColor: palette.fill, fillOpacity: palette.opacity }}
-      lineStyle={{ lineColor: palette.line, lineWidth: 1.5 }}
+      lineStyle={{ lineColor: palette.line, lineWidth: 2.5 }}
     />
   );
 }

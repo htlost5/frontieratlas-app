@@ -6,9 +6,10 @@ import type { ColorTheme } from "../../../../constants/colorPalette";
 
 type Props = GeoLayerProps & {
   colorTheme: ColorTheme;
+  floor: number;
 };
 
-export function BaseView({ data, colorTheme, visible = true }: Props) {
+export function BaseView({ data, colorTheme, visible = true, floor }: Props) {
   if (!data) return null;
 
   const configs = getBaseConfigs(colorTheme);
@@ -19,7 +20,7 @@ export function BaseView({ data, colorTheme, visible = true }: Props) {
         return (
           <PolygonLayer
             key={key}
-            prefixId={`units_base_${key}`}
+            prefixId={`${floor}F_rooms_base_${key}`}
             data={data}
             visible={visible}
             filter={config.filter}

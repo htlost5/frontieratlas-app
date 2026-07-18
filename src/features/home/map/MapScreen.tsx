@@ -183,6 +183,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           floorData={batchData.floorData}
           colorTheme={colorTheme}
           visible={isInteriorVisible}
+          floor={batchData.currentFloor}
         />
       )}
 
@@ -191,6 +192,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
         <UnitSymbol
           pointData={processedUnitGeoJson}
           isVisible={isInteriorVisible ? 1 : 0}
+          floor={batchData.currentFloor}
         />
       )}
 

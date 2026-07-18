@@ -10,4 +10,5 @@ export type FloorProps = {
   };
   colorTheme: ColorTheme;
   visible?: boolean;
+  floor: number;
 };

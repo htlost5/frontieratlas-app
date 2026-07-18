@@ -6,13 +6,24 @@ import type { ColorTheme } from "../../../constants/colorPalette";
 
 type Props = GeoLayerProps & {
   colorTheme: ColorTheme;
+  floor: number;
 };
 
-export function UnitView({ data, colorTheme, visible = true }: Props) {
+export function UnitView({ data, colorTheme, visible = true, floor }: Props) {
   return (
     <>
-      <BaseView data={data} colorTheme={colorTheme} visible={visible} />
-      <RoomView data={data} colorTheme={colorTheme} visible={visible} />
+      <BaseView
+        data={data}
+        colorTheme={colorTheme}
+        visible={visible}
+        floor={floor}
+      />
+      <RoomView
+        data={data}
+        colorTheme={colorTheme}
+        visible={visible}
+        floor={floor}
+      />
     </>
   );
 }

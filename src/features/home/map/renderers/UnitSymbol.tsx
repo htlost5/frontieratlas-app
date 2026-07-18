@@ -11,19 +11,20 @@ import {
 type Props = {
   pointData: FeatureCollection | null;
   isVisible: number;
+  floor: number;
 };
 
 const iconImageExpression = buildPoiIconImageExpression();
 const sortKeyExpression = buildPoiSortKeyExpression();
 const poiFilter = buildPoiFilter();
 
-export function UnitSymbol({ pointData, isVisible }: Props) {
+export function UnitSymbol({ pointData, isVisible, floor }: Props) {
   if (!pointData) return null;
 
   return (
-    <ShapeSource id="unit-symbol-source" shape={pointData}>
+    <ShapeSource id={`${floor}F_unit_symbol_source`} shape={pointData}>
       <SymbolLayer
-        id="unit-symbol-layer"
+        id={`${floor}F_unit_symbol`}
         filter={poiFilter}
         style={{
           iconImage: iconImageExpression,

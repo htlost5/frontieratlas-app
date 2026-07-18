@@ -7,6 +7,7 @@ export function FloorView({
   floorData,
   colorTheme,
   visible = true,
+  floor,
 }: FloorProps) {
   if (!floorData) return null;
 
@@ -15,6 +16,7 @@ export function FloorView({
       data={floorData.units}
       colorTheme={colorTheme}
       visible={visible}
+      floor={floor}
     />
   );
 }

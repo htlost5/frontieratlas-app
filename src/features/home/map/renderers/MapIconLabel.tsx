@@ -39,7 +39,7 @@ export function MapIconLabel({
   // REV-CRITICAL-2 fix: isVisible が false の場合は非表示
   if (!data || !processedGeoJson || !isVisible) return null;
 
-  const labelSourceId = "lavelView";
+  const labelSourceId = `${floor_num}F_label_view`;
 
   return (
     <>
@@ -54,6 +54,7 @@ export function MapIconLabel({
             floor_num={floor_num}
             sourceId={labelSourceId}
             config={labelConfigs[key]}
+            floorLayerPrefix={`${floor_num}F_normal`}
           />
         ))}
       </ShapeSource>

@@ -11,9 +11,10 @@ import { ROOM_COLOR_GROUP } from "../../../../constants/colorPalette";
 
 type Props = GeoLayerProps & {
   colorTheme: ColorTheme;
+  floor: number;
 };
 
-export function RoomView({ data, colorTheme, visible = true }: Props) {
+export function RoomView({ data, colorTheme, visible = true, floor }: Props) {
   if (!data) return null;
 
   return (
@@ -25,7 +26,7 @@ export function RoomView({ data, colorTheme, visible = true }: Props) {
         return (
           <PolygonLayer
             key={category}
-            prefixId={`room_category_${category}`}
+            prefixId={`${floor}F_rooms_cat_${category}`}
             data={data}
             visible={visible}
             filter={filter}

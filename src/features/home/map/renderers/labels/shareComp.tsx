@@ -9,11 +9,13 @@ import { iconSizeExpression } from "../expressions/expressionHelpers";
  * @property floor_num - 表示フロア番号
  * @property sourceId - データソースのID
  * @property config - ラベル表示設定（アイコン、テキストなど）
+ * @property floorLayerPrefix - 階数プレフィックス（レイヤーID重複防止）
  */
 type Props = {
   floor_num: number;
   sourceId: string;
   config: LabelConfig;
+  floorLayerPrefix?: string;
 };
 
 /**
@@ -26,11 +28,19 @@ type Props = {
  * @param config - ラベル表示設定
  * @returns SymbolLayerコンポーネント
  */
-export function LabelLayer({ floor_num, sourceId, config }: Props) {
+export function LabelLayer({
+  floor_num,
+  sourceId,
+  config,
+  floorLayerPrefix,
+}: Props) {
+  const layerId = floorLayerPrefix
+    ? `${floorLayerPrefix}_${config.key}`
+    : `${config.key}-symbol`;
   return (
     <>
       <SymbolLayer
-        id={`${config.key}-symbol`}
+        id={layerId}
         sourceID={sourceId}
         filter={config.filter}
         style={{
