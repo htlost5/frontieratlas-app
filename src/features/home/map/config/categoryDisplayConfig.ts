@@ -81,16 +81,12 @@ export function isPoiVisible(geoJsonCategory: string): boolean {
   return getCategoryConfig(geoJsonCategory)?.poi ?? false;
 }
 
+import { getPoiGeoJsonCategories as getPoiCats } from "@/src/features/home/map/layers/floor/unit/rooms/poiConfigs";
+
 /**
  * POI 表示（poi: true）が有効な全 GeoJSON カテゴリ値の配列を返す。
- * Maplibre の in-filter で使用する。ROOM_CATEGORIES を単一ソースとする。
+ * Maplibre の in-filter で使用する。poiConfigs.ts に委譲。
  */
 export function getPoiGeoJsonCategories(): string[] {
-  const result: string[] = [];
-  for (const [configKey, geoValue] of Object.entries(ROOM_CATEGORIES)) {
-    if (RAW_CATEGORIES[configKey]?.poi) {
-      result.push(geoValue);
-    }
-  }
-  return result;
+  return getPoiCats();
 }
