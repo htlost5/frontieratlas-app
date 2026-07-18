@@ -1,0 +1,69 @@
+// PolygonLayer の公開エクスポートをまとめる。
+import {
+  FillLayer,
+  FillLayerStyle,
+  LineLayer,
+  LineLayerStyle,
+  ShapeSource,
+  SymbolLayer,
+} from "@maplibre/maplibre-react-native";
+import { PolygonProps } from "./types";
+
+const OPACITY_TRANSITION = {
+  delay: 0,
+  duration: 200,
+};
+
+export function PolygonLayer({
+  prefixId,
+  data,
+  visible,
+  filter,
+  fillStyle,
+  lineStyle,
+  showLabel = false,
+  belowLayerID,
+}: PolygonProps) {
+  if (!data) return null;
+
+  const finalFillStyle: FillLayerStyle = {
+    ...fillStyle,
+    fillOpacity: visible === false ? 0 : (fillStyle.fillOpacity ?? 1),
+    fillOpacityTransition: OPACITY_TRANSITION,
+  };
+
+  const finalLineStyle: LineLayerStyle = {
+    ...lineStyle,
+    lineOpacity:
+      visible === false
+        ? 0
+        : (lineStyle.lineOpacity ?? fillStyle.fillOpacity ?? 1),
+    lineOpacityTransition: OPACITY_TRANSITION,
+  };
+
+  return (
+    <ShapeSource id={`shapeSource_${prefixId}`} shape={data}>
+      <FillLayer
+        id={`fillLayer_${prefixId}`}
+        belowLayerID={belowLayerID}
+        filter={filter}
+        style={finalFillStyle}
+      />
+      <LineLayer
+        id={`lineLayer_${prefixId}`}
+        belowLayerID={belowLayerID}
+        filter={filter}
+        style={finalLineStyle}
+      />
+      {showLabel && (
+        <SymbolLayer
+          id={`symbolLayer_${prefixId}`}
+          style={{
+            textField: ["get", "name_en"],
+            textSize: 12,
+          }}
+        />
+      )}
+    </ShapeSource>
+  );
+}

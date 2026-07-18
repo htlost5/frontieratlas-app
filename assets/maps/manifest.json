@@ -1,0 +1,157 @@
+{
+  "version": "v1.0.0",
+  "count": 25,
+  "totalSize": 588628,
+  "files": {
+    "address": {
+      "logicalId": "address",
+      "relativePath": "imdf/address.json",
+      "sha256": "c3dbc3fd718dcf1ee6f82a0c02d68a13bd48238a2a61d4429eb9e515fad3d507",
+      "size": 358
+    },
+    "interact_rooms_1F": {
+      "logicalId": "interact_rooms_1F",
+      "relativePath": "imdf/interact/rooms/1F.json",
+      "sha256": "799911a771c7b85bf2c5a228f8ace95ea30c13ed90ff8f9e2fb4020b510b0cd8",
+      "size": 29593
+    },
+    "interact_rooms_2F": {
+      "logicalId": "interact_rooms_2F",
+      "relativePath": "imdf/interact/rooms/2F.json",
+      "sha256": "7e20ca7c23d51215f5be77516b82f77857f0b0764ab7f11e4170d7d3fd84be50",
+      "size": 38362
+    },
+    "interact_surface_1F": {
+      "logicalId": "interact_surface_1F",
+      "relativePath": "imdf/interact/surface/1F.json",
+      "sha256": "6998d76c1d663ec19e1834f72fd7d16d27558593b6d69cabf03576b61ccc0ae3",
+      "size": 3888
+    },
+    "interact_surface_2F": {
+      "logicalId": "interact_surface_2F",
+      "relativePath": "imdf/interact/surface/2F.json",
+      "sha256": "878eca5fe06f9a55862ca9be39988ea2be42dcb9ee20abd3bd37b248c34ee550",
+      "size": 4259
+    },
+    "interact_surface_3F": {
+      "logicalId": "interact_surface_3F",
+      "relativePath": "imdf/interact/surface/3F.json",
+      "sha256": "878eca5fe06f9a55862ca9be39988ea2be42dcb9ee20abd3bd37b248c34ee550",
+      "size": 4259
+    },
+    "interact_surface": {
+      "logicalId": "interact_surface",
+      "relativePath": "imdf/interact/surface.json",
+      "sha256": "878eca5fe06f9a55862ca9be39988ea2be42dcb9ee20abd3bd37b248c34ee550",
+      "size": 4259
+    },
+    "studyhall_rooms_1F": {
+      "logicalId": "studyhall_rooms_1F",
+      "relativePath": "imdf/studyhall/rooms/1F.json",
+      "sha256": "374888bb7f363fe0da610e1732e93a3b10064846acce7fb04d4b5f7855ba6eb3",
+      "size": 90137
+    },
+    "studyhall_rooms_2F": {
+      "logicalId": "studyhall_rooms_2F",
+      "relativePath": "imdf/studyhall/rooms/2F.json",
+      "sha256": "c8d98e4201393e1efdc0ca15db852b9fafb604677748124a1534730c62d33a07",
+      "size": 99204
+    },
+    "studyhall_rooms_3F": {
+      "logicalId": "studyhall_rooms_3F",
+      "relativePath": "imdf/studyhall/rooms/3F.json",
+      "sha256": "5125da0a378fb621f9c652f0982f4cd744da38968f2b0b1c3137e8266572a53b",
+      "size": 101720
+    },
+    "studyhall_rooms_4F": {
+      "logicalId": "studyhall_rooms_4F",
+      "relativePath": "imdf/studyhall/rooms/4F.json",
+      "sha256": "1eb2da8094366d62ad137c0d7b983b3f465824554ebb527ff36a7e322aaba912",
+      "size": 34768
+    },
+    "studyhall_rooms_5F": {
+      "logicalId": "studyhall_rooms_5F",
+      "relativePath": "imdf/studyhall/rooms/5F.json",
+      "sha256": "336ce900bc9d4c592350177da8f830340e65203f77c2d322be896eddbaf1680d",
+      "size": 36039
+    },
+    "studyhall_stairs": {
+      "logicalId": "studyhall_stairs",
+      "relativePath": "imdf/studyhall/stairs.json",
+      "sha256": "c23d96ad26168b0744845efce06b1233a9dc235a4c9c88cb135cddfd95d33f06",
+      "size": 61813
+    },
+    "studyhall_surface_1F": {
+      "logicalId": "studyhall_surface_1F",
+      "relativePath": "imdf/studyhall/surface/1F.json",
+      "sha256": "af26c36754ff6dd0d4cd43860dd5a3181e69e5e59ba8c0f18d7389f4d3e4519b",
+      "size": 7315
+    },
+    "studyhall_surface_2F": {
+      "logicalId": "studyhall_surface_2F",
+      "relativePath": "imdf/studyhall/surface/2F.json",
+      "sha256": "50020c4d7af422eee0f0898b7680de954e766cc1d86a58396b1bea833a4fa3c7",
+      "size": 7315
+    },
+    "studyhall_surface_3F": {
+      "logicalId": "studyhall_surface_3F",
+      "relativePath": "imdf/studyhall/surface/3F.json",
+      "sha256": "8c7eb357b05bbb46e364be05ab23fa11cb5fd7404e300819d918e344bb6e532f",
+      "size": 6905
+    },
+    "studyhall_surface_4F": {
+      "logicalId": "studyhall_surface_4F",
+      "relativePath": "imdf/studyhall/surface/4F.json",
+      "sha256": "1281975e4b614353711ba6a910ea29f2f383699dd02a8bb6d8679b0609abe907",
+      "size": 1055
+    },
+    "studyhall_surface_5F": {
+      "logicalId": "studyhall_surface_5F",
+      "relativePath": "imdf/studyhall/surface/5F.json",
+      "sha256": "1281975e4b614353711ba6a910ea29f2f383699dd02a8bb6d8679b0609abe907",
+      "size": 1055
+    },
+    "studyhall_surface": {
+      "logicalId": "studyhall_surface",
+      "relativePath": "imdf/studyhall/surface.json",
+      "sha256": "3a44fe34271d65b8bb470292b65e3b704e99b07d5ceddaf4acb5ee68890b1616",
+      "size": 2134
+    },
+    "studyhall_walkable_1F": {
+      "logicalId": "studyhall_walkable_1F",
+      "relativePath": "imdf/studyhall/walkable/1F.json",
+      "sha256": "6e8ddadfedab299e6b8d569b60a5092ed8bc9f36b30dc07907eb0d5502b8ec37",
+      "size": 12173
+    },
+    "studyhall_walkable_2F": {
+      "logicalId": "studyhall_walkable_2F",
+      "relativePath": "imdf/studyhall/walkable/2F.json",
+      "sha256": "ce13ea3c5e0efa5b1eff9584edad52cf353e40cebe6ad7d048826f0fb4abfd5a",
+      "size": 16734
+    },
+    "studyhall_walkable_3F": {
+      "logicalId": "studyhall_walkable_3F",
+      "relativePath": "imdf/studyhall/walkable/3F.json",
+      "sha256": "4f47930b7a4c1766ab2a42d156e523b4f9a098b1e5581c7300d804264ff00cb6",
+      "size": 15374
+    },
+    "studyhall_walkable_4F": {
+      "logicalId": "studyhall_walkable_4F",
+      "relativePath": "imdf/studyhall/walkable/4F.json",
+      "sha256": "7fb5c4464997e3a8bf07357c20e2320acdd4af8caaa3e25499463cf3025b111a",
+      "size": 3939
+    },
+    "studyhall_walkable_5F": {
+      "logicalId": "studyhall_walkable_5F",
+      "relativePath": "imdf/studyhall/walkable/5F.json",
+      "sha256": "6644fc0c386d34898e0488b8970139a6036c56b042587f4d08728f74f958ace7",
+      "size": 4555
+    },
+    "venue_venue": {
+      "logicalId": "venue_venue",
+      "relativePath": "imdf/venue/venue.json",
+      "sha256": "d304b1f17b98d4fcb9032a5ece0f8c954ae5e5d0e84d5da5dd883e8139465a01",
+      "size": 1415
+    }
+  }
+}
