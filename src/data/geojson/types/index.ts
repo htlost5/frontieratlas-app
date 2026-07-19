@@ -30,10 +30,3 @@ export interface UpdateResult {
   status: "success" | "failed" | "skipped";
   error?: string;
 }
-
-/** リモート version.json の型 */
-export interface VersionInfo {
-  version: string;
-  manifestSha256: string;
-  manifestSize: number;
-}

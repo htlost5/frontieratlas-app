@@ -78,4 +78,4 @@ export async function checkAndUpdate(): Promise<UpdateResult[]> {
 }
 
 export { GeojsonRepository } from "./repository/GeojsonRepository";
-export type { UpdatePlan, VersionInfo } from "./types";
+export type { UpdatePlan } from "./types";
