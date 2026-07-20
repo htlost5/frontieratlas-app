@@ -3,8 +3,10 @@
 
 import { GeojsonRepository } from "./repository/GeojsonRepository";
 import { AssetRestoreService } from "./service/AssetRestoreService";
+import { RemoteSyncService } from "./service/RemoteSyncService";
 import type { UpdateResult } from "./types";
 import type { LocalManifest } from "@/src/domain/manifestTypes";
+import { QuotaExceededError } from "@/src/domain/NetworkErrors";
 import assetManifest from "@/assets/maps/manifest.json";
 
 export type { UpdateResult } from "./types";
@@ -60,20 +62,32 @@ export async function checkAndUpdate(): Promise<UpdateResult[]> {
   // バンドルバージョンと SQLite バージョンが一致していれば更新不要
   if (localManifest && localManifest.version === bundleVersion) {
     console.log("[GeoJsonInit] Bundle version matches cache, no update needed");
-    return [];
+  } else {
+    console.log(
+      `[GeoJsonInit] Bundle version ${bundleVersion} > cache, restoring from assets`,
+    );
+    const assetService = new AssetRestoreService(repo);
+    const restoredCount = await assetService.restoreFromAssets();
+    const manifest = await assetService.buildLocalManifest();
+    await repo.setLocalManifest(manifest);
+
+    console.log(
+      `[GeoJsonInit] Restored ${restoredCount} files from bundle assets`,
+    );
   }
 
-  console.log(
-    `[GeoJsonInit] Bundle version ${bundleVersion} > cache, restoring from assets`,
-  );
-  const assetService = new AssetRestoreService(repo);
-  const restoredCount = await assetService.restoreFromAssets();
-  const manifest = await assetService.buildLocalManifest();
-  await repo.setLocalManifest(manifest);
+  // R2 リモート同期 (非同期実行、失敗してもブロックしない)
+  try {
+    const remoteService = new RemoteSyncService(repo);
+    await remoteService.syncIfNeeded();
+  } catch (e) {
+    if (e instanceof QuotaExceededError) {
+      console.warn("[GeoJsonInit] R2 sync skipped: quota exceeded");
+    } else {
+      console.warn("[GeoJsonInit] R2 sync failed, using existing cache:", e);
+    }
+  }
 
-  console.log(
-    `[GeoJsonInit] Restored ${restoredCount} files from bundle assets`,
-  );
   return [];
 }
 
