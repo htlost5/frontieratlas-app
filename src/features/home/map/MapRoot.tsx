@@ -23,6 +23,7 @@ const MapRootBase = ({ children }: Props) => {
   const [floor, setFloor] = useState(mapConfig.default.floor);
   const [zoom, setZoom] = useState(mapConfig.default.zoom);
   const [iconsVisible, setIconsVisible] = useState(false);
+  const [venueVisible, setVenueVisible] = useState(false);
   const scheme = useColorScheme();
 
   const colorTheme = useMemo(
@@ -92,6 +93,8 @@ const MapRootBase = ({ children }: Props) => {
         flyToSearchResult,
         iconsVisible,
         setIconsVisible,
+        venueVisible,
+        setVenueVisible,
       }}
     >
       <View style={styles.root}>

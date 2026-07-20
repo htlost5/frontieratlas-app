@@ -1,14 +1,14 @@
 // マップ表示の初期設定とズーム・制限設定をまとめる。
 const zoom = {
   max: 20.3,
-  min: 17.35,
+  min: 18.0,
   buffer: 0.1,
 };
 
 export const mapConfig = {
   default: {
-    center: [139.6784895108818, 35.49777179199512],
-    zoom: 17.5,
+    center: [139.678405, 35.498391],
+    zoom: 18.0,
     floor: 1,
   },
 
@@ -19,12 +19,9 @@ export const mapConfig = {
   },
 
   restrict: {
-    // union of LOG bounds + ~1m buffer
-    //   Union NE (raw): [139.68010757, 35.49975630]
-    //   Union SW (raw): [139.67740003, 35.49582529]
     bounds: {
-      ne: [139.680119, 35.499765],
-      sw: [139.677389, 35.495816],
+      ne: [139.67892, 35.498705],
+      sw: [139.677889, 35.498176],
     },
   },
 

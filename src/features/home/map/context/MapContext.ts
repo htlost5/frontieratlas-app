@@ -25,6 +25,9 @@ export type MapContextValue = {
 
   iconsVisible: boolean;
   setIconsVisible: (v: boolean) => void;
+
+  venueVisible: boolean;
+  setVenueVisible: (v: boolean) => void;
 };
 
 export const MapContext = createContext<MapContextValue | null>(null);

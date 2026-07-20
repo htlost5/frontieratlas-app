@@ -14,6 +14,7 @@ type Props = GeoLayerProps & {
 // 施設全体の外枠（敷地境界）を塗りつぶしと枠線で描画するコンポーネント
 export const VenueView = React.memo(function VenueView({
   data,
+  visible,
   colorTheme,
 }: Props) {
   if (!data) return null;
@@ -22,6 +23,7 @@ export const VenueView = React.memo(function VenueView({
     <PolygonLayer
       prefixId="venue"
       data={data}
+      visible={visible}
       fillStyle={getVenueFillStyle(colorTheme.venue)}
       lineStyle={getVenueLineStyle(colorTheme.venue)}
     />

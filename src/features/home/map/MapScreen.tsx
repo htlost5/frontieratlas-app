@@ -13,7 +13,6 @@ import { useMapContext } from "./hooks/state/useMapContext";
 import { useBatchMapData } from "./hooks/dataLoad/useBatchMapData";
 
 import type { CameraRegion } from "./types";
-import { BuildingOutlineLayer } from "./layers/buildingOutline";
 import { FloorView } from "./layers/floor";
 import { SurfaceLayer } from "./layers/floor/surface";
 import { VenueView } from "./layers/venue";
@@ -21,8 +20,6 @@ import { MapIconLabel } from "./renderers/MapIconLabel";
 import { UnitSymbol } from "./renderers/UnitSymbol";
 import { StairsLayer } from "./layers/stairs";
 import { processUnitData } from "./renderers/processUnitData";
-import { geoJsonMap } from "@/src/data/geojson/geojsonAssetMap";
-import { sanitizeFeatureCollection } from "@/src/infra/geojson/sanitizeGeoJSON";
 
 type Props = {
   cameraRef: React.RefObject<CameraRef | null>;
@@ -30,9 +27,9 @@ type Props = {
 };
 
 export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
-  const { floor, zoom, setZoom, colorTheme, iconsVisible } = useMapContext();
+  const { floor, zoom, setZoom, colorTheme, iconsVisible, venueVisible } =
+    useMapContext();
   const displayMode = useDisplayLevel(zoom);
-  const showBuildings = displayMode === "building";
 
   // 再試行用の内部カウンタ（useBatchMapData に渡して再フェッチをトリガー）
   const [retryCount, setRetryCount] = React.useState(0);
@@ -42,16 +39,6 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
   const errorDismissed = dismissedAtKey === currentKey;
 
   const batchData = useBatchMapData(floor, retryCount);
-
-  // BuildingOutline: 全フロア統合サーフェス（building モード時、現在の floor に関わらず固定表示）
-  const buildingOutlineData = useMemo(() => {
-    try {
-      const data = geoJsonMap["studyhall_surface"].content;
-      return sanitizeFeatureCollection(data);
-    } catch {
-      return null;
-    }
-  }, []);
 
   const handleRetry = useCallback(() => {
     setRetryCount((c) => c + 1);
@@ -143,12 +130,15 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           5. FloorView (rooms: BaseView + RoomView)
           6. UnitSymbol (special symbols)
           7. MapIconLabel (labels)
-          8. BuildingOutlineLayer (building mode のみ)
           ================================================================ */}
 
       {/* 1. Venue — 最背面・常時マウント */}
       {batchData.venue && (
-        <VenueView data={batchData.venue} colorTheme={colorTheme} />
+        <VenueView
+          data={batchData.venue}
+          colorTheme={colorTheme}
+          visible={venueVisible}
+        />
       )}
 
       {/* 2. Surface underlay (1F以外: studyhall_surfaceback, opacity 0.5) */}
@@ -157,7 +147,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           prefixId="surface_underlay"
           data={batchData.floorData.underlaySurface}
           palette={{ ...colorTheme.surface, opacity: 0.5 }}
-          visible={isInteriorVisible}
+          visible={true}
           belowLayerID="fillLayer_surface_current"
         />
       )}
@@ -168,7 +158,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           prefixId="surface_current"
           data={batchData.floorData.surface}
           palette={colorTheme.surface}
-          visible={isInteriorVisible}
+          visible={true}
         />
       )}
 
@@ -178,7 +168,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           data={batchData.stairs}
           currentFloor={batchData.currentFloor}
           palette={colorTheme.stairs}
-          visible={isInteriorVisible}
+          visible={true}
         />
       )}
 
@@ -187,7 +177,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
         <FloorView
           floorData={batchData.floorData}
           colorTheme={colorTheme}
-          visible={isInteriorVisible}
+          visible={true}
           floor={batchData.currentFloor}
         />
       )}
@@ -209,15 +199,6 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           isVisible={isInteriorVisible}
           colorTheme={colorTheme}
           iconsVisible={iconsVisible}
-        />
-      )}
-
-      {/* 8. BuildingOutline — building モード時のみ表示（studyhall surfaceを固定使用） */}
-      {buildingOutlineData && (
-        <BuildingOutlineLayer
-          data={buildingOutlineData}
-          visible={showBuildings}
-          colorTheme={colorTheme}
         />
       )}
     </MapContainer>
