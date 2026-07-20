@@ -37,6 +37,7 @@ export type ColorGroup =
   | "indigo"
   | "lime"
   | "amber"
+  | "aqua"
   | "teal"
   | "green"
   | "pink"
