@@ -3,7 +3,7 @@ import { CameraRef } from "@maplibre/maplibre-react-native";
 import React, {
   memo,
   useCallback,
-  useMemo,
+  useEffect,
   useRef,
   useState,
   startTransition,
@@ -13,6 +13,7 @@ import { MapScreen } from "./MapScreen";
 import { MapContext } from "./context/MapContext";
 import { mapConfig } from "./constants/mapConfig";
 import { LIGHT_THEME, DARK_THEME } from "./constants/colorPalette";
+import { useSearch } from "@/src/features/home/search/Context/SearchContext";
 
 type Props = {
   children: React.ReactNode;
@@ -26,10 +27,7 @@ const MapRootBase = ({ children }: Props) => {
   const [venueVisible, setVenueVisible] = useState(false);
   const scheme = useColorScheme();
 
-  const colorTheme = useMemo(
-    () => (scheme === "dark" ? DARK_THEME : LIGHT_THEME),
-    [scheme],
-  );
+  const colorTheme = scheme === "dark" ? DARK_THEME : LIGHT_THEME;
 
   // startTransition でラップした setFloor — フロア切替を非同期更新にし UI 応答性を維持
   const wrappedSetFloor = useCallback((n: number) => {
@@ -80,6 +78,25 @@ const MapRootBase = ({ children }: Props) => {
     [],
   );
 
+  // 検索結果選択の監視: 選択時に floor 移動 + flyTo を実行（初回のみ）
+  const { selectedSearchResult, setSelectedSearchResult } = useSearch();
+  const lastHandledSearchIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!selectedSearchResult) return;
+    if (lastHandledSearchIdRef.current === selectedSearchResult.id) return;
+    lastHandledSearchIdRef.current = selectedSearchResult.id;
+    const { floor: targetFloor, coordinates } = selectedSearchResult;
+    if (targetFloor !== floor) {
+      wrappedSetFloor(targetFloor);
+    }
+    flyToSearchResult(coordinates);
+  }, [selectedSearchResult, floor, wrappedSetFloor, flyToSearchResult]);
+
+  const handleClearHighlight = useCallback(() => {
+    lastHandledSearchIdRef.current = null;
+    setSelectedSearchResult(null);
+  }, [setSelectedSearchResult]);
+
   return (
     <MapContext.Provider
       value={{
@@ -100,7 +117,11 @@ const MapRootBase = ({ children }: Props) => {
       <View style={styles.root}>
         {/* Map は完全に背景 */}
         <View style={StyleSheet.absoluteFill}>
-          <MapScreen cameraRef={cameraRef} />
+          <MapScreen
+            cameraRef={cameraRef}
+            highlightedSearchResult={selectedSearchResult}
+            onClearHighlight={handleClearHighlight}
+          />
         </View>
 
         {/* タブ・UI を上に重ねる */}

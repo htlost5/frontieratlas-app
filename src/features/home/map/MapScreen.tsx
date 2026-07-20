@@ -2,6 +2,7 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
 
 import type { CameraRef } from "@maplibre/maplibre-react-native";
+import { ShapeSource, CircleLayer } from "@maplibre/maplibre-react-native";
 
 import { MapContainer } from "./components/MapContainer";
 import { ErrorOverlay } from "./components/ErrorOverlay";
@@ -13,6 +14,7 @@ import { useMapContext } from "./hooks/state/useMapContext";
 import { useBatchMapData } from "./hooks/dataLoad/useBatchMapData";
 
 import type { CameraRegion } from "./types";
+import type { SearchResultItem } from "@/src/features/home/search/types";
 import { FloorView } from "./layers/floor";
 import { SurfaceLayer } from "./layers/floor/surface";
 import { VenueView } from "./layers/venue";
@@ -24,9 +26,16 @@ import { processUnitData } from "./renderers/processUnitData";
 type Props = {
   cameraRef: React.RefObject<CameraRef | null>;
   retryKey?: number; // 外部からインクリメントして再マウントさせる
+  highlightedSearchResult?: SearchResultItem | null;
+  onClearHighlight?: () => void;
 };
 
-export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
+export function MapScreen({
+  cameraRef,
+  retryKey = 0,
+  highlightedSearchResult,
+  onClearHighlight,
+}: Props) {
   const { floor, zoom, setZoom, colorTheme, iconsVisible, venueVisible } =
     useMapContext();
   const displayMode = useDisplayLevel(zoom);
@@ -50,10 +59,6 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
   // processedGeoJson: UnitSymbol 用の表示ポイントデータ（MapIconLabel と共有）
   const processedUnitGeoJson = useMemo(() => {
     const result = processUnitData(batchData.floorData?.units ?? null);
-    console.log(
-      "[UnitSymbol] processedUnitGeoJson features:",
-      result?.features?.length ?? 0,
-    );
     return result;
   }, [batchData.floorData?.units]);
 
@@ -62,12 +67,8 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
   const handleRegionIsChanging = useCallback(
     (region: CameraRegion) => {
       const z = region?.properties?.zoomLevel;
-      const vb = region?.properties?.visibleBounds;
       if (typeof z === "number" && prevZoomRef.current !== z) {
         prevZoomRef.current = z;
-        const ne = vb?.[0];
-        const sw = vb?.[1];
-        console.log("[zoom]", z, "bounds:", { ne, sw });
         setZoom(z);
       }
     },
@@ -109,6 +110,12 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
     <MapContainer
       cameraRef={cameraRef}
       onRegionIsChanging={handleRegionIsChanging}
+      onPress={
+        highlightedSearchResult &&
+        highlightedSearchResult.floor === batchData.currentFloor
+          ? onClearHighlight
+          : undefined
+      }
     >
       {/* フロア切替エラーオーバーレイ */}
       {batchData.floorError && !errorDismissed && (
@@ -192,15 +199,56 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
       )}
 
       {/* 7. ラベル — 最前面に近い */}
-      {batchData.floorData?.units && (
+      {processedUnitGeoJson && (
         <MapIconLabel
           floor_num={batchData.currentFloor}
-          data={batchData.floorData.units}
+          processedGeoJson={processedUnitGeoJson}
           isVisible={isInteriorVisible}
           colorTheme={colorTheme}
           iconsVisible={iconsVisible}
         />
       )}
+
+      {/* 8. 検索結果ハイライトマーカー — 最前面 */}
+      {highlightedSearchResult &&
+        highlightedSearchResult.floor === batchData.currentFloor && (
+          <ShapeSource
+            id="search-highlight-source"
+            shape={{
+              type: "Feature",
+              geometry: {
+                type: "Point",
+                coordinates: highlightedSearchResult.coordinates,
+              },
+              properties: {},
+            }}
+          >
+            {/* 外周リング */}
+            <CircleLayer
+              id="search-highlight-outer"
+              style={{
+                circleRadius: 18,
+                circleColor: "#4A90D9",
+                circleOpacity: 0.35,
+                circleStrokeWidth: 3,
+                circleStrokeColor: "#FFFFFF",
+                circleStrokeOpacity: 0.9,
+              }}
+            />
+            {/* 中芯 */}
+            <CircleLayer
+              id="search-highlight-inner"
+              style={{
+                circleRadius: 8,
+                circleColor: "#4A90D9",
+                circleOpacity: 0.95,
+                circleStrokeWidth: 2,
+                circleStrokeColor: "#FFFFFF",
+                circleStrokeOpacity: 1,
+              }}
+            />
+          </ShapeSource>
+        )}
     </MapContainer>
   );
 }

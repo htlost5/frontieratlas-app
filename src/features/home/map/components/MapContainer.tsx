@@ -6,6 +6,7 @@ import {
   MapView,
 } from "@maplibre/maplibre-react-native";
 import type { CameraRegion } from "../hooks/camera/useCameraController/types";
+import type { Feature } from "geojson";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { mapConfig } from "../constants/mapConfig";
@@ -16,12 +17,14 @@ import { useMapContext } from "../hooks/state/useMapContext";
 type Props = {
   cameraRef: React.RefObject<CameraRef | null>;
   onRegionIsChanging?: (region: CameraRegion) => void;
+  onPress?: (feature: Feature) => void;
   children?: React.ReactNode;
 };
 
 export function MapContainer({
   cameraRef,
   onRegionIsChanging,
+  onPress,
   children,
 }: Props) {
   const { colorTheme } = useMapContext();
@@ -32,6 +35,7 @@ export function MapContainer({
       mapStyle={mapStyle}
       attributionEnabled={false}
       onRegionIsChanging={onRegionIsChanging}
+      onPress={onPress}
       regionDidChangeDebounceTime={50}
       compassEnabled={true}
       compassViewPosition={1}

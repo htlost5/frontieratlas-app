@@ -2,25 +2,6 @@
 import type { Expression } from "@maplibre/maplibre-react-native";
 
 /**
- * ズームレベルに応じて値を補間する式を生成する。
- * @param zoomStops - [zoomLevel, outputValue] のタプル配列
- * @returns 補間式
- */
-export function zoomInterpolate(zoomStops: [number, number][]): Expression {
-  if (zoomStops.length < 2) {
-    throw new Error("zoomInterpolate requires at least 2 stops");
-  }
-
-  const stops: any[] = ["interpolate", ["linear"], ["zoom"]];
-
-  for (const [zoom, value] of zoomStops) {
-    stops.push(zoom, value);
-  }
-
-  return stops as unknown as Expression;
-}
-
-/**
  * 指数補間（exponential, base 1.5）によるアイコンサイズの Maplibre Expression を生成。
  * @param stops - [zoomLevel, iconSize] のタプル配列（2点以上必須）
  */

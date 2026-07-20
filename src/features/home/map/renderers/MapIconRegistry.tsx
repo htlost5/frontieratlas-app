@@ -54,7 +54,7 @@ import iconSpecialStorage from "@/assets/images/icons/MapView/MapLogo/special/sp
 import iconSpecialFireDoor from "@/assets/images/icons/MapView/MapLogo/special/special-fire-door.png";
 import iconSpecialChangingRoom from "@/assets/images/icons/MapView/MapLogo/special/special-changing-room.png";
 
-const ICON_IMAGES: Record<string, number> = {
+export const ICON_IMAGES: Record<string, number> = {
   "learning-light": iconLearningLight,
   "learning-dark": iconLearningDark,
   "laboratory-light": iconLaboratoryLight,

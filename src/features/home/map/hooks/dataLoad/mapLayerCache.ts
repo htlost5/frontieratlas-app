@@ -2,7 +2,7 @@
 // モジュールスコープで全フロアデータを保持。useRefキャッシュを置き換え。
 // SQLite → geoJsonMap の段階的フォールバックを実装。
 
-import type { FeatureCollection } from "geojson";
+import type { Feature, FeatureCollection } from "geojson";
 import type { MapId } from "@/src/data/geojson/geojsonAssetMap";
 import { GeojsonRepository } from "@/src/data/geojson/repository/GeojsonRepository";
 import { sanitizeFeatureCollection } from "@/src/infra/geojson/sanitizeGeoJSON";
@@ -21,6 +21,83 @@ export type MapLayerCache = {
   readonly stairs: FeatureCollection;
   readonly floors: Map<number, FloorCache>;
 };
+
+// ---- 検索用インデックスキャッシュ（正規化済み文字列を保持） ----
+
+export type IndexedSearchItem = {
+  id: string;
+  nameJa: string;
+  nameEn: string;
+  normJa: string;
+  normEn: string;
+  category: string;
+  floor: number;
+  coordinates: [number, number];
+};
+
+let searchIndexCache: IndexedSearchItem[] | null = null;
+
+/**
+ * 文字列を検索用に正規化する（小文字化＋半角化）
+ */
+export function normalizeSearch(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[\uFF01-\uFF5E]/g, (ch) =>
+      String.fromCharCode(ch.charCodeAt(0) - 0xfee0),
+    )
+    .replace(/\s+/g, "");
+}
+
+/** rooms FeatureCollection から正規化済み検索インデックスを構築してキャッシュ */
+export function getOrBuildSearchIndex(): IndexedSearchItem[] {
+  if (searchIndexCache) return searchIndexCache;
+
+  const cache = getMapCache();
+  if (!cache) return [];
+
+  const items: IndexedSearchItem[] = [];
+  const floorNumbers = [1, 2, 3, 4, 5];
+
+  for (const floor of floorNumbers) {
+    const floorCache = cache.floors.get(floor);
+    if (!floorCache) continue;
+
+    const features = floorCache.rooms.features as Feature[];
+    for (const feature of features) {
+      const props = feature.properties as Record<string, unknown> | null;
+      if (!props) continue;
+
+      const id = String(props.id ?? "");
+      const nameJa = String(props.name_ja ?? "");
+      const nameEn = String(props.name_en ?? "");
+      const category = String(props.category ?? "");
+      const dp = props.display_point as [number, number] | undefined;
+
+      if (!dp || dp.length !== 2) continue;
+      if (!nameJa && !nameEn) continue;
+
+      items.push({
+        id,
+        nameJa,
+        nameEn,
+        normJa: normalizeSearch(nameJa),
+        normEn: normalizeSearch(nameEn),
+        category,
+        floor,
+        coordinates: dp as [number, number],
+      });
+    }
+  }
+
+  searchIndexCache = items;
+  return items;
+}
+
+/** 検索インデックスキャッシュを無効化 */
+export function invalidateSearchIndexCache(): void {
+  searchIndexCache = null;
+}
 
 // ---- モジュールスコープキャッシュ ----
 
@@ -152,4 +229,5 @@ export function invalidateCache(): void {
   cache = null;
   cacheStatus = "idle";
   loadPromise = null;
+  searchIndexCache = null;
 }

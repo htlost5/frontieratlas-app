@@ -2,16 +2,16 @@
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
-import usePrepareApp from "./hooks/usePrepareApp";
+import { useLoadFonts } from "./hooks/baseSet/useLoadFonts";
 import usePrepareData from "./hooks/usePrepareData";
 
 type Props = {
   children: React.ReactNode;
 };
 
-export default function InitSetup({ children }: Props) {
+export default function AppInit({ children }: Props) {
   // 基盤のロード
-  const baseReady = usePrepareApp();
+  const baseReady = useLoadFonts();
   const dataReady = usePrepareData(baseReady);
 
   // ロード完了後スプラッシュ消す

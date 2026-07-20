@@ -1,7 +1,7 @@
 // アプリ起動時の初期化を管理するコンポーネント
 // スプラッシュスクリーン制御、フォント読み込み、GeoJSONキャッシュ作成を担当
 
-import InitSetup from "@/src/AppInit";
+import InitCore from "@/src/AppInit";
 import * as SplashScreen from "expo-splash-screen";
 import React from "react";
 
@@ -14,5 +14,5 @@ type Props = {
 
 // 初期化処理 -> 完了後childrenを描画
 export default function AppInit({ children }: Props) {
-  return <InitSetup>{children}</InitSetup>;
+  return <InitCore>{children}</InitCore>;
 }

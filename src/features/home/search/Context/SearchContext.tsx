@@ -1,5 +1,6 @@
 // 検索機能用のReact Context: アプリ全体で検索テキストと結果を共有する状態管理
 import React, { createContext, useContext, useState } from "react";
+import type { SearchResultItem } from "../types";
 
 /**
  * SearchContextの状態型定義
@@ -7,12 +8,16 @@ import React, { createContext, useContext, useState } from "react";
  * @property setSearchText - 検索キーワードを更新する関数
  * @property answerText - 翻訳された検索結果（部屋名など）
  * @property setAnswerText - 検索結果を更新する関数
+ * @property selectedSearchResult - ユーザーが選択した検索結果（MapRoot で監視）
+ * @property setSelectedSearchResult - 選択結果を設定する関数
  */
 type SearchContextType = {
   searchText: string;
   setSearchText: (text: string) => void;
   answerText: string;
   setAnswerText: (text: string) => void;
+  selectedSearchResult: SearchResultItem | null;
+  setSelectedSearchResult: (result: SearchResultItem | null) => void;
 };
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -28,9 +33,18 @@ const SearchContext = createContext<SearchContextType | undefined>(undefined);
 export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchText, setSearchText] = useState("");
   const [answerText, setAnswerText] = useState("");
+  const [selectedSearchResult, setSelectedSearchResult] =
+    useState<SearchResultItem | null>(null);
   return (
     <SearchContext.Provider
-      value={{ searchText, setSearchText, answerText, setAnswerText }}
+      value={{
+        searchText,
+        setSearchText,
+        answerText,
+        setAnswerText,
+        selectedSearchResult,
+        setSelectedSearchResult,
+      }}
     >
       {children}
     </SearchContext.Provider>

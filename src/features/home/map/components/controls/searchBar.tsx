@@ -30,7 +30,7 @@ export function SearchBar() {
       ]}
       onPress={() => {
         if (!focused) {
-          router.push("/search" as any);
+          router.push("/home/search");
         }
       }}
       activeOpacity={1}
