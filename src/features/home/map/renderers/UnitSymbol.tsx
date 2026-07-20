@@ -1,7 +1,7 @@
 // 特殊シンボル統合コンポーネント（角丸四角背景＋白アイコン）
 import { ShapeSource, SymbolLayer } from "@maplibre/maplibre-react-native";
 import type { FeatureCollection } from "geojson";
-import { iconSizeExpression } from "./expressions/expressionHelpers";
+import { sizeExpression } from "./expressions/expressionHelpers";
 import {
   buildPoiIconImageExpression,
   buildPoiSortKeyExpression,
@@ -28,9 +28,9 @@ export function UnitSymbol({ pointData, isVisible, floor }: Props) {
         filter={poiFilter}
         style={{
           iconImage: iconImageExpression,
-          iconSize: iconSizeExpression([
-            [17, 0.18],
-            [20, 0.38],
+          iconSize: sizeExpression([
+            [17.8, 0.07],
+            [20.3, 0.26],
           ]),
           iconAllowOverlap: false,
           iconIgnorePlacement: false,

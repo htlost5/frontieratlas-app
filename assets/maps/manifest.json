@@ -1,7 +1,7 @@
 {
-  "version": "v1.0.0",
-  "count": 25,
-  "totalSize": 588628,
+  "version": "v1.0.7",
+  "count": 26,
+  "totalSize": 614543,
   "files": {
     "address": {
       "logicalId": "address",
@@ -12,68 +12,68 @@
     "interact_rooms_1F": {
       "logicalId": "interact_rooms_1F",
       "relativePath": "imdf/interact/rooms/1F.json",
-      "sha256": "799911a771c7b85bf2c5a228f8ace95ea30c13ed90ff8f9e2fb4020b510b0cd8",
-      "size": 29593
+      "sha256": "43e228dc7ad2c916718d4ce7adc31cd7997b131981f4d8a3414920a05988f719",
+      "size": 29591
     },
     "interact_rooms_2F": {
       "logicalId": "interact_rooms_2F",
       "relativePath": "imdf/interact/rooms/2F.json",
-      "sha256": "7e20ca7c23d51215f5be77516b82f77857f0b0764ab7f11e4170d7d3fd84be50",
-      "size": 38362
+      "sha256": "8f48096ba8c46ac1742b857876884a73f5695f868dd5de781064a2520c308170",
+      "size": 38570
     },
     "interact_surface_1F": {
       "logicalId": "interact_surface_1F",
       "relativePath": "imdf/interact/surface/1F.json",
-      "sha256": "6998d76c1d663ec19e1834f72fd7d16d27558593b6d69cabf03576b61ccc0ae3",
-      "size": 3888
+      "sha256": "84a50bb945eeb28d8f2d60b3205c74e2c55290eaf2196174c7c6efbe26c3921a",
+      "size": 3887
     },
     "interact_surface_2F": {
       "logicalId": "interact_surface_2F",
       "relativePath": "imdf/interact/surface/2F.json",
-      "sha256": "878eca5fe06f9a55862ca9be39988ea2be42dcb9ee20abd3bd37b248c34ee550",
-      "size": 4259
+      "sha256": "592e3f2e0a69491f86bf5f32cd077b8115b4149886aa6b6cfa08129afa69e5c1",
+      "size": 4257
     },
     "interact_surface_3F": {
       "logicalId": "interact_surface_3F",
       "relativePath": "imdf/interact/surface/3F.json",
-      "sha256": "878eca5fe06f9a55862ca9be39988ea2be42dcb9ee20abd3bd37b248c34ee550",
-      "size": 4259
+      "sha256": "592e3f2e0a69491f86bf5f32cd077b8115b4149886aa6b6cfa08129afa69e5c1",
+      "size": 4257
     },
     "interact_surface": {
       "logicalId": "interact_surface",
       "relativePath": "imdf/interact/surface.json",
-      "sha256": "878eca5fe06f9a55862ca9be39988ea2be42dcb9ee20abd3bd37b248c34ee550",
-      "size": 4259
+      "sha256": "592e3f2e0a69491f86bf5f32cd077b8115b4149886aa6b6cfa08129afa69e5c1",
+      "size": 4257
     },
     "studyhall_rooms_1F": {
       "logicalId": "studyhall_rooms_1F",
       "relativePath": "imdf/studyhall/rooms/1F.json",
-      "sha256": "374888bb7f363fe0da610e1732e93a3b10064846acce7fb04d4b5f7855ba6eb3",
-      "size": 90137
+      "sha256": "c0646dab41c058c7bb806aaef0ad8d8d449023209746405b0d90bb69c600f615",
+      "size": 90664
     },
     "studyhall_rooms_2F": {
       "logicalId": "studyhall_rooms_2F",
       "relativePath": "imdf/studyhall/rooms/2F.json",
-      "sha256": "c8d98e4201393e1efdc0ca15db852b9fafb604677748124a1534730c62d33a07",
-      "size": 99204
+      "sha256": "6230bdf45cd2413116a46e99a78d4d45a1cf3fc057ea0239781c9cd0c335dc9f",
+      "size": 98756
     },
     "studyhall_rooms_3F": {
       "logicalId": "studyhall_rooms_3F",
       "relativePath": "imdf/studyhall/rooms/3F.json",
-      "sha256": "5125da0a378fb621f9c652f0982f4cd744da38968f2b0b1c3137e8266572a53b",
-      "size": 101720
+      "sha256": "263e8de1879f739854a8a04180d91aaab00434da5ac2ddd3c1e4861d3730fecb",
+      "size": 102142
     },
     "studyhall_rooms_4F": {
       "logicalId": "studyhall_rooms_4F",
       "relativePath": "imdf/studyhall/rooms/4F.json",
-      "sha256": "1eb2da8094366d62ad137c0d7b983b3f465824554ebb527ff36a7e322aaba912",
-      "size": 34768
+      "sha256": "f14489746f33eeef4b13e1efe53ad119cf002011eb06b30315506579667e3329",
+      "size": 33916
     },
     "studyhall_rooms_5F": {
       "logicalId": "studyhall_rooms_5F",
       "relativePath": "imdf/studyhall/rooms/5F.json",
-      "sha256": "336ce900bc9d4c592350177da8f830340e65203f77c2d322be896eddbaf1680d",
-      "size": 36039
+      "sha256": "a3c49f9d43cf510821a57d0137c88157c87974dfd06d9756c350dbe57d3ed9b2",
+      "size": 35175
     },
     "studyhall_stairs": {
       "logicalId": "studyhall_stairs",
@@ -84,68 +84,74 @@
     "studyhall_surface_1F": {
       "logicalId": "studyhall_surface_1F",
       "relativePath": "imdf/studyhall/surface/1F.json",
-      "sha256": "af26c36754ff6dd0d4cd43860dd5a3181e69e5e59ba8c0f18d7389f4d3e4519b",
-      "size": 7315
+      "sha256": "f5b1d864f0792dff55d4c3937f088e09f1ddf9392af2744b9bae945a61460865",
+      "size": 7419
     },
     "studyhall_surface_2F": {
       "logicalId": "studyhall_surface_2F",
       "relativePath": "imdf/studyhall/surface/2F.json",
-      "sha256": "50020c4d7af422eee0f0898b7680de954e766cc1d86a58396b1bea833a4fa3c7",
-      "size": 7315
+      "sha256": "4ec29007f845e92b8bd14133c1d9b7b5131f55c8da5773ab04216aa39894fa3d",
+      "size": 7106
     },
     "studyhall_surface_3F": {
       "logicalId": "studyhall_surface_3F",
       "relativePath": "imdf/studyhall/surface/3F.json",
-      "sha256": "8c7eb357b05bbb46e364be05ab23fa11cb5fd7404e300819d918e344bb6e532f",
-      "size": 6905
+      "sha256": "cf282b2c83113107c29f7090775ebf2e4b025165fd65a77551e74f8f45c46e67",
+      "size": 6904
     },
     "studyhall_surface_4F": {
       "logicalId": "studyhall_surface_4F",
       "relativePath": "imdf/studyhall/surface/4F.json",
-      "sha256": "1281975e4b614353711ba6a910ea29f2f383699dd02a8bb6d8679b0609abe907",
-      "size": 1055
+      "sha256": "4fc5f4373409cf1ee427bf9f839e42d115a43cce8b5fe38f6197e56effb07486",
+      "size": 1056
     },
     "studyhall_surface_5F": {
       "logicalId": "studyhall_surface_5F",
       "relativePath": "imdf/studyhall/surface/5F.json",
-      "sha256": "1281975e4b614353711ba6a910ea29f2f383699dd02a8bb6d8679b0609abe907",
-      "size": 1055
+      "sha256": "4fc5f4373409cf1ee427bf9f839e42d115a43cce8b5fe38f6197e56effb07486",
+      "size": 1056
     },
     "studyhall_surface": {
       "logicalId": "studyhall_surface",
       "relativePath": "imdf/studyhall/surface.json",
-      "sha256": "3a44fe34271d65b8bb470292b65e3b704e99b07d5ceddaf4acb5ee68890b1616",
-      "size": 2134
+      "sha256": "be8f5c4054097eb9352b213df8dda7c70e8503abefda93cc04b5f25bd14c02a8",
+      "size": 6904
+    },
+    "studyhall_surfaceback": {
+      "logicalId": "studyhall_surfaceback",
+      "relativePath": "imdf/studyhall/surfaceback.json",
+      "sha256": "f572a0136293c2bc91b7f3681fabe95680d4937f8180856e5396906029f55792",
+      "size": 7315
     },
     "studyhall_walkable_1F": {
       "logicalId": "studyhall_walkable_1F",
       "relativePath": "imdf/studyhall/walkable/1F.json",
-      "sha256": "6e8ddadfedab299e6b8d569b60a5092ed8bc9f36b30dc07907eb0d5502b8ec37",
-      "size": 12173
+      "sha256": "00fc2c130103dd037b4a5255ca99282c4c844ac34d542ca4b03155e3c98d5002",
+      "size": 12379
     },
     "studyhall_walkable_2F": {
       "logicalId": "studyhall_walkable_2F",
       "relativePath": "imdf/studyhall/walkable/2F.json",
-      "sha256": "ce13ea3c5e0efa5b1eff9584edad52cf353e40cebe6ad7d048826f0fb4abfd5a",
-      "size": 16734
+      "sha256": "5502ef935328f06be1a56ea87d04d1a6e46c01d1399ee7fa044d0fe3ad569bd7",
+      "size": 22914
     },
     "studyhall_walkable_3F": {
       "logicalId": "studyhall_walkable_3F",
       "relativePath": "imdf/studyhall/walkable/3F.json",
-      "sha256": "4f47930b7a4c1766ab2a42d156e523b4f9a098b1e5581c7300d804264ff00cb6",
-      "size": 15374
+      "sha256": "ed40e89096d2a6511159eace0b4b73831a2f2978653b3ccb273c4a66ba5d873a",
+      "size": 20746
     },
     "studyhall_walkable_4F": {
       "logicalId": "studyhall_walkable_4F",
       "relativePath": "imdf/studyhall/walkable/4F.json",
-      "sha256": "7fb5c4464997e3a8bf07357c20e2320acdd4af8caaa3e25499463cf3025b111a",
-      "size": 3939
+      "sha256": "da8161620a4c5c5f26b6be5faf616e8c4b4fce67aaad22d7b136a2930284603d",
+      "size": 5487
     },
     "studyhall_walkable_5F": {
       "logicalId": "studyhall_walkable_5F",
       "relativePath": "imdf/studyhall/walkable/5F.json",
-      "sha256": "6644fc0c386d34898e0488b8970139a6036c56b042587f4d08728f74f958ace7",
-      "size": 4555
+      "sha256": "6987d68b8643508a40fd6a3093beaf27ef3d7fd080abf88fed0130c933881d48",
+      "size": 6199
     },
     "venue_venue": {
       "logicalId": "venue_venue",

@@ -61,6 +61,11 @@ function generate(manifest) {
       continue;
     }
 
+    if (relPath === "version.json") {
+      console.warn(`skip ${logicalId}: not a geojson data file`);
+      continue;
+    }
+
     const importPath = `@/assets/maps/${toPosix(relPath)}`;
 
     let varName = makeIdentifier(logicalId);

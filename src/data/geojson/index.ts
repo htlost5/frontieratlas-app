@@ -1,26 +1,15 @@
 // geojson データ管理の新しい公開エントリポイント
 // SQLite 永続化・ハイブリッド更新戦略・部分成功・クォータ制限対応
 
+import geoDataConfig from "@/config/geo-data-version.json";
 import { GeojsonRepository } from "./repository/GeojsonRepository";
 import { AssetRestoreService } from "./service/AssetRestoreService";
 import { RemoteSyncService } from "./service/RemoteSyncService";
 import type { UpdateResult } from "./types";
-import type { LocalManifest } from "@/src/domain/manifestTypes";
 import { QuotaExceededError } from "@/src/domain/NetworkErrors";
 import assetManifest from "@/assets/maps/manifest.json";
 
 export type { UpdateResult } from "./types";
-
-/** クォータ超過状態を外部に通知するためのコールバック型 */
-export type QuotaCallback = (exceeded: boolean, message: string) => void;
-
-/** 登録されたクォータ超過コールバック */
-let onQuotaExceeded: QuotaCallback | null = null;
-
-/** クォータ超過時のコールバックを登録 */
-export function setOnQuotaExceeded(cb: QuotaCallback) {
-  onQuotaExceeded = cb;
-}
 
 /**
  * GeoJSON データシステムを初期化する。
@@ -76,16 +65,22 @@ export async function checkAndUpdate(): Promise<UpdateResult[]> {
     );
   }
 
-  // R2 リモート同期 (非同期実行、失敗してもブロックしない)
-  try {
-    const remoteService = new RemoteSyncService(repo);
-    await remoteService.syncIfNeeded();
-  } catch (e) {
-    if (e instanceof QuotaExceededError) {
-      console.warn("[GeoJsonInit] R2 sync skipped: quota exceeded");
-    } else {
-      console.warn("[GeoJsonInit] R2 sync failed, using existing cache:", e);
+  // R2 リモート同期 (設定が remote の場合のみ実行)
+  const configSource =
+    (geoDataConfig as { version: string; source?: string }).source ?? "local";
+  if (configSource === "remote") {
+    try {
+      const remoteService = new RemoteSyncService(repo);
+      await remoteService.syncIfNeeded();
+    } catch (e) {
+      if (e instanceof QuotaExceededError) {
+        console.warn("[GeoJsonInit] R2 sync skipped: quota exceeded");
+      } else {
+        console.warn("[GeoJsonInit] R2 sync failed, using existing cache:", e);
+      }
     }
+  } else {
+    console.log("[GeoJsonInit] Data source is local, skipping R2 sync");
   }
 
   return [];

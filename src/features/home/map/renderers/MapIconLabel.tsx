@@ -14,6 +14,7 @@ type Props = {
   data: FeatureCollection | null;
   isVisible: boolean;
   colorTheme: ColorTheme;
+  iconsVisible: boolean;
 };
 
 /**
@@ -27,6 +28,7 @@ export function MapIconLabel({
   data,
   isVisible,
   colorTheme,
+  iconsVisible,
 }: Props) {
   // DD-05: processedFeatures を useMemo でメモ化（Hooks は早期リターン前に配置）
   const processedGeoJson: FeatureCollection | null = useProcessedUnitData(data);
@@ -55,6 +57,7 @@ export function MapIconLabel({
             sourceId={labelSourceId}
             config={labelConfigs[key]}
             floorLayerPrefix={`${floor_num}F_normal`}
+            iconsVisible={iconsVisible}
           />
         ))}
       </ShapeSource>

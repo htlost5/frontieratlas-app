@@ -10,15 +10,14 @@
 
 import type { FeatureCollection } from "geojson";
 import { GeojsonRepository } from "@/src/data/geojson/repository/GeojsonRepository";
-import type { UpsertMeta } from "@/src/data/geojson/repository/GeojsonRepository";
 import {
   fetchJsonWithRetry,
   fetchTextWithRetry,
 } from "@/src/infra/network/fetchJson";
 import { sha256 } from "@/src/infra/sha256/hashCheck";
-import { parseJson, stringifyJson } from "@/src/infra/jsonParse/jsonParser";
+import { parseJson } from "@/src/infra/jsonParse/jsonParser";
 import type { BuildManifest, LocalManifest } from "@/src/domain/manifestTypes";
-import { QuotaExceededError, NetworkError } from "@/src/domain/NetworkErrors";
+import { QuotaExceededError } from "@/src/domain/NetworkErrors";
 import { VERSION_URL, MANIFEST_URL, geojsonUrl } from "@/src/config/remote";
 
 /** version.json の型 */

@@ -22,6 +22,9 @@ export type MapContextValue = {
 
   colorTheme: ColorTheme;
   flyToSearchResult: (center: [number, number], zoom?: number) => void;
+
+  iconsVisible: boolean;
+  setIconsVisible: (v: boolean) => void;
 };
 
 export const MapContext = createContext<MapContextValue | null>(null);

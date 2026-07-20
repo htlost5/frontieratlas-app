@@ -43,6 +43,7 @@ const ALL_MAP_IDS: MapId[] = [
   "studyhall_rooms_4F",
   "studyhall_surface_5F",
   "studyhall_rooms_5F",
+  "studyhall_surfaceback",
 ] as const;
 
 // ---- 内部ヘルパー ----
@@ -112,25 +113,15 @@ export async function loadAllMapData(): Promise<void> {
         floors.set(floor, { surface, rooms, underlaySurface: null });
       }
 
-      // 2F/3F の underlaySurface を 1F surface で設定
-      const floor1 = floors.get(1);
-      if (floor1) {
-        for (const f of [2, 3]) {
-          const existing = floors.get(f);
-          if (existing) {
-            floors.set(f, { ...existing, underlaySurface: floor1.surface });
-          }
-        }
-      }
-
-      // 4F/5F の underlaySurface を 3F surface で設定
-      const floor3 = floors.get(3);
-      if (floor3) {
-        for (const f of [4, 5]) {
-          const existing = floors.get(f);
-          if (existing) {
-            floors.set(f, { ...existing, underlaySurface: floor3.surface });
-          }
+      // 1F以外の全フロア(2-5F) の underlaySurface を studyhall_surfaceback で設定
+      const surfaceback = resolveFeatureCollection(
+        batchResult,
+        "studyhall_surfaceback" as MapId,
+      );
+      for (const f of [2, 3, 4, 5]) {
+        const existing = floors.get(f);
+        if (existing) {
+          floors.set(f, { ...existing, underlaySurface: surfaceback });
         }
       }
 

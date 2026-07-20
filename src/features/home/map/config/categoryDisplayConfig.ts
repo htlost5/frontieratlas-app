@@ -2,6 +2,7 @@
 // ROOM_CATEGORIES を単一ソースとし、GeoJSON 値 → category.json キーの逆引きマップを構築する。
 import categoryJson from "@/category.json";
 import { ROOM_CATEGORIES } from "@/src/features/home/map/layers/floor/unit/rooms/filter";
+import { getPoiGeoJsonCategories as getPoiCats } from "@/src/features/home/map/layers/floor/unit/rooms/poiConfigs";
 
 // ---------------------------------------------------------------------------
 // 型定義
@@ -80,8 +81,6 @@ export function isLabelTextVisible(geoJsonCategory: string): boolean {
 export function isPoiVisible(geoJsonCategory: string): boolean {
   return getCategoryConfig(geoJsonCategory)?.poi ?? false;
 }
-
-import { getPoiGeoJsonCategories as getPoiCats } from "@/src/features/home/map/layers/floor/unit/rooms/poiConfigs";
 
 /**
  * POI 表示（poi: true）が有効な全 GeoJSON カテゴリ値の配列を返す。

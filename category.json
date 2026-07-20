@@ -160,6 +160,11 @@
       "label": { "icon": false, "text": false },
       "poi": true
     },
+    "terrace": {
+      "visible": true,
+      "label": { "icon": false, "text": false },
+      "poi": false
+    },
     "courtyard": {
       "visible": true,
       "label": { "icon": false, "text": true },
@@ -170,8 +175,13 @@
       "label": { "icon": false, "text": false },
       "poi": false
     },
+    "rooftop": {
+      "visible": true,
+      "label": { "icon": false, "text": false },
+      "poi": false
+    },
     "outdoor_space": {
-      "visible": false,
+      "visible": true,
       "label": { "icon": false, "text": false },
       "poi": false
     },
@@ -186,7 +196,7 @@
       "poi": false
     },
     "atrium": {
-      "visible": false,
+      "visible": true,
       "label": { "icon": false, "text": false },
       "poi": false
     },

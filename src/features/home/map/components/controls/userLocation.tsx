@@ -7,6 +7,7 @@ import { mapConfig } from "../../constants/mapConfig";
 import { useMapContext } from "../../hooks/state/useMapContext";
 
 const PIN_COLOR = "#007AFF";
+const FRAME_COLOR = "#c1dfff"
 
 export function UserLocation() {
   const { cameraRef, colorTheme } = useMapContext();
@@ -26,9 +27,8 @@ export function UserLocation() {
       onPress={handlePress}
     >
       {/* ピン先（丸） */}
-      <View style={styles.pinHead} />
-      {/* ピン本体（三角） */}
-      <View style={styles.pinBody} />
+      <View style={styles.frame} />
+      <View style={styles.centerCircle} />
     </TouchableOpacity>
   );
 }
@@ -47,24 +47,18 @@ const styles = StyleSheet.create({
     width: 50,
     ...mapControlShadow,
   },
-  pinHead: {
+  centerCircle: {
     position: "absolute",
     backgroundColor: PIN_COLOR,
-    height: 16,
-    width: 16,
-    borderRadius: 8,
-    top: 12,
+    height: 10,
+    width: 10,
+    borderRadius: 100,
   },
-  pinBody: {
-    position: "absolute",
-    bottom: 14,
-    width: 0,
-    height: 0,
-    borderLeftWidth: 8,
-    borderRightWidth: 8,
-    borderTopWidth: 10,
-    borderLeftColor: "transparent",
-    borderRightColor: "transparent",
-    borderTopColor: PIN_COLOR,
-  },
+  frame: {
+    position: "relative",
+    backgroundColor: FRAME_COLOR,
+    height: 30,
+    width: 30,
+    borderRadius: 100
+  }
 });

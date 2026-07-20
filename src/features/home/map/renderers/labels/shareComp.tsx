@@ -2,7 +2,7 @@
 import { SymbolLayer } from "@maplibre/maplibre-react-native";
 import { LabelConfig } from "./LabelConfig";
 import { FONT_STACK } from "@/src/shared/constants/typography";
-import { iconSizeExpression } from "../expressions/expressionHelpers";
+import { sizeExpression } from "../expressions/expressionHelpers";
 
 /**
  * ラベルレイヤーのプロパティ定義
@@ -16,6 +16,7 @@ type Props = {
   sourceId: string;
   config: LabelConfig;
   floorLayerPrefix?: string;
+  iconsVisible: boolean;
 };
 
 /**
@@ -33,7 +34,9 @@ export function LabelLayer({
   sourceId,
   config,
   floorLayerPrefix,
+  iconsVisible,
 }: Props) {
+  const showIcon = iconsVisible && config.iconVisible;
   const layerId = floorLayerPrefix
     ? `${floorLayerPrefix}_${config.key}`
     : `${config.key}-symbol`;
@@ -45,10 +48,10 @@ export function LabelLayer({
         filter={config.filter}
         style={{
           symbolPlacement: "point",
-          iconImage: config.iconVisible ? (config.iconKey ?? config.key) : "",
-          iconSize: iconSizeExpression([
+          iconImage: showIcon ? (config.iconKey ?? config.key) : "",
+          iconSize: sizeExpression([
             [17, 0.17],
-            [20, 0.35],
+            [20.3, 0.35],
           ]),
           iconRotationAlignment: "auto",
           textRotationAlignment: "auto",
@@ -64,23 +67,16 @@ export function LabelLayer({
                 "",
               ]
             : "",
-          textSize: [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            17,
-            10,
-            19,
-            12,
-            21,
-            15,
-          ],
+          textSize: sizeExpression([
+            [17, 7],
+            [20.3, 15],
+          ]),
           textFont: FONT_STACK.MEDIUM,
           textColor: config.textColor,
           textHaloColor: config.textHaloColor ?? "rgba(255,255,255,0.7)",
           textHaloWidth: config.textHaloWidth ?? 1.5,
-          textAnchor: config.iconVisible ? "left" : "center",
-          textOffset: config.iconVisible ? [1.4, 0] : [0, 0],
+          textAnchor: showIcon ? "left" : "center",
+          textOffset: showIcon ? [1.4, 0] : [0, 0],
           textAllowOverlap: ["step", ["zoom"], false, 18.5, true],
           textIgnorePlacement: false,
         }}

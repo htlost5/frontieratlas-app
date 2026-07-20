@@ -22,6 +22,7 @@ const MapRootBase = ({ children }: Props) => {
   const cameraRef = useRef<CameraRef>(null);
   const [floor, setFloor] = useState(mapConfig.default.floor);
   const [zoom, setZoom] = useState(mapConfig.default.zoom);
+  const [iconsVisible, setIconsVisible] = useState(false);
   const scheme = useColorScheme();
 
   const colorTheme = useMemo(
@@ -89,6 +90,8 @@ const MapRootBase = ({ children }: Props) => {
         moveTo,
         colorTheme,
         flyToSearchResult,
+        iconsVisible,
+        setIconsVisible,
       }}
     >
       <View style={styles.root}>

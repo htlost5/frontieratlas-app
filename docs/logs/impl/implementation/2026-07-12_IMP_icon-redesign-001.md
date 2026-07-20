@@ -32,8 +32,8 @@ tags:
 - `LIGHT_THEME.rooms` 全8カテゴリに濃い色の circleFill を設定
 - `DARK_THEME.rooms` 全8カテゴリに line色を circleFill として設定
 
-### Step 2: expressionHelpers.ts — iconSizeExpression() 追加
-- `iconSizeExpression()` 関数を新規追加
+### Step 2: expressionHelpers.ts — sizeExpression() 追加
+- `sizeExpression()` 関数を新規追加
 - 指数補間 `["exponential", 1.5]` を使用
 - 2点以上のストップを必須とするバリデーション付き
 
@@ -62,18 +62,18 @@ tags:
 - 7つの特殊シンボルPNG import 追加
 - `ICON_IMAGES` に7エントリ追加
 
-### Step 6: shareComp.tsx — iconSizeExpression 適用
-- `iconSizeExpression` import 追加
-- `iconSize` を `iconSizeExpression([[17, 0.35], [19, 0.45], [21, 0.55]])` に変更
+### Step 6: shareComp.tsx — sizeExpression 適用
+- `sizeExpression` import 追加
+- `iconSize` を `sizeExpression([[17, 0.35], [19, 0.45], [21, 0.55]])` に変更
 
-### Step 7: MapSymbolIcon.tsx — iconSizeExpression 適用
-- `iconSizeExpression` import 追加
-- `iconSize` を `iconSizeExpression([[17.9, iconSizeBase * 0.5], [21.1, iconSizeBase * 3.7]])` に変更
+### Step 7: MapSymbolIcon.tsx — sizeExpression 適用
+- `sizeExpression` import 追加
+- `iconSize` を `sizeExpression([[17.9, iconSizeBase * 0.5], [21.1, iconSizeBase * 3.7]])` に変更
 
 ### Step 8: UnitSymbol.tsx — 全面再設計
 - 単一 ShapeSource + 7個の SymbolLayer で全特殊シンボルを統合
 - 各SymbolLayerは category フィルターで条件分岐
-- iconSize: `iconSizeExpression([[17.9, 0.42], [21.1, 0.66]])`（通常の1.2倍）
+- iconSize: `sizeExpression([[17.9, 0.42], [21.1, 0.66]])`（通常の1.2倍）
 
 ### Step 9: toilet.tsx / elevator.tsx 削除
 - `symbols/toilet.tsx` 削除

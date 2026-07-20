@@ -1,0 +1,32 @@
+import type { RoomCategory, ColorGroup } from "./types";
+
+/** RoomCategory → ColorGroup マッピング */
+export const ROOM_COLOR_GROUP: Record<RoomCategory, ColorGroup> = {
+  learning: "blue",
+  library: "blue",
+  laboratory: "purple",
+  prep: "gray",
+  structure: "gray",
+  meeting: "gold",
+  staff: "bronze",
+  it: "teal",
+  listening: "green",
+  nursery: "pink",
+  outdoor_space: "terrace",
+  studio: "amber",
+  broadcasting: "amber",
+  printing: "teal",
+  music: "green",
+  japanese: "brown",
+  cooking: "coral",
+  sewing: "coral",
+  art: "brown",
+  workshop: "orange",
+  restroom: "cyan",
+  vending: "salmon",
+  changing: "indigo",
+  elevator: "lime",
+  waste: "gray",
+  courtyard: "olive",
+  terrace: "terrace",
+};

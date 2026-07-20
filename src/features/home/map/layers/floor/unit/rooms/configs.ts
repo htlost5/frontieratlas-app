@@ -2,7 +2,10 @@
 import type { Expression } from "@maplibre/maplibre-react-native";
 import type { RoomCategory } from "../../../../constants/colorPalette";
 import { ROOM_CATEGORIES, type RoomKey } from "./filter";
-import { isFeatureVisible } from "../../../../config/categoryDisplayConfig";
+import {
+  isFeatureVisible,
+  getCategoryConfig,
+} from "../../../../config/categoryDisplayConfig";
 
 export type RoomCategoryGroup = RoomCategory;
 
@@ -30,6 +33,8 @@ export const ROOM_CATEGORY_MAP: Record<string, RoomCategoryGroup> = {
   atrium: "waste",
   locker_area: "structure",
   emergency_exit: "structure",
+  outdoor_space: "terrace",
+  rooftop: "structure",
   // amber
   staff_room: "staff",
   meeting_room: "meeting",
@@ -56,6 +61,7 @@ export const ROOM_CATEGORY_MAP: Record<string, RoomCategoryGroup> = {
   waste_room: "waste",
   // olive
   courtyard: "courtyard",
+  terrace: "terrace",
 };
 
 /** 全25 RoomCategory */
@@ -85,6 +91,7 @@ export const CATEGORIES: RoomCategory[] = [
   "elevator",
   "waste",
   "courtyard",
+  "terrace",
 ];
 
 /** category.json キー → DisplayMode 導出 */
@@ -96,7 +103,8 @@ export type DisplayMode =
 
 export function getDisplayMode(categoryJsonKey: string): DisplayMode {
   if (categoryJsonKey in ROOM_CATEGORY_MAP) {
-    return ROOM_CATEGORY_MAP[categoryJsonKey] === "courtyard"
+    const cat = ROOM_CATEGORY_MAP[categoryJsonKey];
+    return cat === "courtyard" || cat === "terrace"
       ? "text_only"
       : "icon_and_text";
   }
@@ -118,6 +126,28 @@ export function buildCategoryFilter(category: RoomCategory): Expression {
       ["get", "category"],
       ["literal", [""]],
     ] as unknown as Expression;
+  }
+  return [
+    "in",
+    ["get", "category"],
+    ["literal", values],
+  ] as unknown as Expression;
+}
+
+/** ラベル表示対象のみを含むフィルタ式（visible=false または label 無効の項目を除外） */
+export function buildLabelFilter(category: RoomCategory): Expression {
+  const values = Object.entries(ROOM_CATEGORY_MAP)
+    .filter(([, cat]) => cat === category)
+    .map(([key]) => ROOM_CATEGORIES[key as RoomKey])
+    .filter((v) => {
+      if (!isFeatureVisible(v)) return false;
+      const config = getCategoryConfig(v);
+      if (!config) return true; // 設定なし → デフォルト表示
+      return config.label.icon || config.label.text;
+    });
+
+  if (values.length === 0) {
+    return ["==", ["get", "category"], ""] as unknown as Expression;
   }
   return [
     "in",

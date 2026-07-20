@@ -1,7 +1,8 @@
 // タブナビゲーション配下のレイアウトコンポーネント
 // 子ルートの表示制御とボトムUIの表示を担当
+// <Tabs> + detachInactiveScreens={false} でタブ切り替え時のアンマウントを防止
 
-import { Slot } from "expo-router";
+import { Tabs } from "expo-router";
 import React from "react";
 import { View } from "react-native";
 
@@ -11,7 +12,16 @@ import { ScreenFC } from "@/src/shared/components";
 export default function TabLayout() {
   return (
     <View style={{ flex: 1 }}>
-      <Slot />
+      <Tabs
+        tabBar={() => null}
+        screenOptions={{ headerShown: false }}
+        detachInactiveScreens={false}
+      >
+        <Tabs.Screen name="index" />
+        <Tabs.Screen name="home" />
+        <Tabs.Screen name="tools" />
+        <Tabs.Screen name="classroom" />
+      </Tabs>
       <ScreenFC visible="bottom" />
     </View>
   );

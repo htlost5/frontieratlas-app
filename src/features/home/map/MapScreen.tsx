@@ -21,7 +21,8 @@ import { MapIconLabel } from "./renderers/MapIconLabel";
 import { UnitSymbol } from "./renderers/UnitSymbol";
 import { StairsLayer } from "./layers/stairs";
 import { processUnitData } from "./renderers/processUnitData";
-import { getMapCache } from "./hooks/dataLoad/mapLayerCache";
+import { geoJsonMap } from "@/src/data/geojson/geojsonAssetMap";
+import { sanitizeFeatureCollection } from "@/src/infra/geojson/sanitizeGeoJSON";
 
 type Props = {
   cameraRef: React.RefObject<CameraRef | null>;
@@ -29,7 +30,7 @@ type Props = {
 };
 
 export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
-  const { floor, zoom, setZoom, colorTheme } = useMapContext();
+  const { floor, zoom, setZoom, colorTheme, iconsVisible } = useMapContext();
   const displayMode = useDisplayLevel(zoom);
   const showBuildings = displayMode === "building";
 
@@ -42,11 +43,15 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
 
   const batchData = useBatchMapData(floor, retryCount);
 
-  // BuildingOutline: キャッシュの 3F surface データ（building モード時、現在の floor に関わらず固定表示）
+  // BuildingOutline: 全フロア統合サーフェス（building モード時、現在の floor に関わらず固定表示）
   const buildingOutlineData = useMemo(() => {
-    const cache = getMapCache();
-    return cache?.floors.get(3)?.surface ?? null;
-  }, [batchData.isCacheReady]);
+    try {
+      const data = geoJsonMap["studyhall_surface"].content;
+      return sanitizeFeatureCollection(data);
+    } catch {
+      return null;
+    }
+  }, []);
 
   const handleRetry = useCallback(() => {
     setRetryCount((c) => c + 1);
@@ -146,7 +151,7 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
         <VenueView data={batchData.venue} colorTheme={colorTheme} />
       )}
 
-      {/* 2. Surface underlay (4F/5F の 3F surface, opacity 0.5) */}
+      {/* 2. Surface underlay (1F以外: studyhall_surfaceback, opacity 0.5) */}
       {batchData.floorData?.underlaySurface && (
         <SurfaceLayer
           prefixId="surface_underlay"
@@ -203,10 +208,11 @@ export function MapScreen({ cameraRef, retryKey = 0 }: Props) {
           data={batchData.floorData.units}
           isVisible={isInteriorVisible}
           colorTheme={colorTheme}
+          iconsVisible={iconsVisible}
         />
       )}
 
-      {/* 8. BuildingOutline — building モード時のみ表示（3F surface を固定使用） */}
+      {/* 8. BuildingOutline — building モード時のみ表示（studyhall surfaceを固定使用） */}
       {buildingOutlineData && (
         <BuildingOutlineLayer
           data={buildingOutlineData}

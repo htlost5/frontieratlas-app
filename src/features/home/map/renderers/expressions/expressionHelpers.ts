@@ -24,9 +24,9 @@ export function zoomInterpolate(zoomStops: [number, number][]): Expression {
  * 指数補間（exponential, base 1.5）によるアイコンサイズの Maplibre Expression を生成。
  * @param stops - [zoomLevel, iconSize] のタプル配列（2点以上必須）
  */
-export function iconSizeExpression(stops: [number, number][]): Expression {
+export function sizeExpression(stops: [number, number][]): Expression {
   if (stops.length < 2) {
-    throw new Error("iconSizeExpression requires at least 2 stops");
+    throw new Error("sizeExpression requires at least 2 stops");
   }
   const result: any[] = ["interpolate", ["exponential", 1.5], ["zoom"]];
   for (const [zoom, size] of stops) {

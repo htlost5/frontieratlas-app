@@ -22,6 +22,7 @@ import studyhall_surface_3F from "@/assets/maps/imdf/studyhall/surface/3F.json";
 import studyhall_surface_4F from "@/assets/maps/imdf/studyhall/surface/4F.json";
 import studyhall_surface_5F from "@/assets/maps/imdf/studyhall/surface/5F.json";
 import studyhall_surface from "@/assets/maps/imdf/studyhall/surface.json";
+import studyhall_surfaceback from "@/assets/maps/imdf/studyhall/surfaceback.json";
 import studyhall_walkable_1F from "@/assets/maps/imdf/studyhall/walkable/1F.json";
 import studyhall_walkable_2F from "@/assets/maps/imdf/studyhall/walkable/2F.json";
 import studyhall_walkable_3F from "@/assets/maps/imdf/studyhall/walkable/3F.json";
@@ -124,6 +125,11 @@ export const geoJsonMap = {
     logicalId: "studyhall_surface",
     relativePath: "imdf/studyhall/surface.json",
     content: studyhall_surface as FeatureCollection,
+  },
+  studyhall_surfaceback: {
+    logicalId: "studyhall_surfaceback",
+    relativePath: "imdf/studyhall/surfaceback.json",
+    content: studyhall_surfaceback as FeatureCollection,
   },
   studyhall_walkable_1F: {
     logicalId: "studyhall_walkable_1F",

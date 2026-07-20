@@ -6,7 +6,7 @@ import {
 } from "@maplibre/maplibre-react-native";
 import type { Expression } from "@maplibre/maplibre-react-native";
 import type { FeatureCollection } from "geojson";
-import { iconSizeExpression } from "../expressions/expressionHelpers";
+import { sizeExpression } from "../expressions/expressionHelpers";
 
 type Props = {
   /** MapLibre Images のID */
@@ -60,7 +60,7 @@ export function MapSymbolIcon({
           filter={filter}
           style={{
             iconImage: iconName,
-            iconSize: iconSizeExpression([
+            iconSize: sizeExpression([
               [17, iconSizeBase * 0.5],
               [20, iconSizeBase * 3.7],
             ]),

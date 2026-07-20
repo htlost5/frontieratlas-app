@@ -6,7 +6,7 @@ import {
   type ColorTheme,
 } from "@/src/features/home/map/constants/colorPalette";
 import {
-  buildCategoryFilter,
+  buildLabelFilter,
   ROOM_CATEGORY_MAP,
   CATEGORIES,
 } from "@/src/features/home/map/layers/floor/unit/rooms/configs";
@@ -59,7 +59,7 @@ export function createLabelConfigs(
       {
         key: cat,
         iconKey: `${cat}-${themeSuffix}`,
-        filter: buildCategoryFilter(cat),
+        filter: buildLabelFilter(cat),
         textColor: colorTheme.label.textColor,
         textHaloColor: colorTheme.label.textHaloColor,
         textHaloWidth: colorTheme.label.textHaloWidth,

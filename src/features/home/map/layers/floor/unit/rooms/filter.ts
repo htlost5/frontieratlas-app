@@ -55,8 +55,10 @@ export const ROOM_CATEGORIES = {
   storage: "storage",
   waste_room: "waste_room",
   courtyard: "courtyard",
+  terrace: "terrace",
   fire_door: "fire_door",
   atrium: "atrium",
+  rooftop: "rooftop",
 } as const;
 
 export type RoomKey = keyof typeof ROOM_CATEGORIES;
