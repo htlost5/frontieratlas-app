@@ -98,9 +98,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       },
     },
 
-    runtimeVersion: {
-      policy: "appVersion",
-    },
+    runtimeVersion: "0.17.1",
 
     updates: {
       url: "https://u.expo.dev/1b6e78b6-c7c3-4760-b085-bb85043c0650",
